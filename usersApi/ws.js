@@ -26,8 +26,9 @@ wss.on("connection", async (ws) => {
   });
 
   ws.on("message", async function message(data) {
-    // console.log(data);
     const requestsData = await getRequests()
     wss.broadcast(JSON.stringify(requestsData));
   });
+
+  // todo: onclose => remove the username in the array "usersLogged" that is located in users.controllers
 });

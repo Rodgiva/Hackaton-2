@@ -56,7 +56,7 @@ const getUser = async () => {
 //   }
 // }
 
-const displayBtn = () => {
+const displayBtn = async (id) => {
   btnElem.classList.add("btn");
   btnElem.classList.add("btn-primary");
   btnElem.textContent = "Register the request";
@@ -64,6 +64,17 @@ const displayBtn = () => {
   divTextCenterElem.classList.add("text-center");
   divTextCenterElem.appendChild(btnElem);
   containerElem.appendChild(divTextCenterElem);
+
+  const userData = await getUser();
+  const user = await userData.json();
+  const user_id = user[0].id;
+
+  const databody = {user_id, id}
+
+  btnElem.addEventListener("click", async () => {
+    const data = await register(databody)
+    console.log(data);
+  });
 };
 
 const displayRequest = async (request_id) => {
@@ -82,19 +93,7 @@ const displayRequest = async (request_id) => {
     enddateElem.textContent = enddate;
     containerElem.appendChild(enddateElem);
   }
-  displayBtn();
-
-  const userData = await getUser();
-  const user = await userData.json();
-  const user_id = user[0].id;
-
-  const databody = {user_id, id}
-
-  btnElem.addEventListener("click", async () => {
-    const data = await register(databody)
-    const res = await data.json()
-    console.log(res);
-  });
+  displayBtn(id);
 };
 
 const requestId = localStorage.getItem("requestId");
