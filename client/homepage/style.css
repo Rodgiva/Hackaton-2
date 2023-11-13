@@ -1,0 +1,19 @@
+body {
+  background-color: rgb(42, 42, 42);
+  color: white;
+}
+
+#container {
+  width: 75%;
+  margin: auto;
+  border: thin solid white;
+  border-radius: 50px;
+  padding: 50px;
+  margin-top: 10vh;
+  background-color: rgb(24, 24, 24);
+}
+
+#btnCreateRequest {
+    width: 75%;
+    margin: auto;
+}
